@@ -1,6 +1,7 @@
 {
   "name": "phonex",
   "version": "1.0.0",
+  "type": "module",
   "description": "A modern phone app clone with contact management and WhatsApp integration",
   "private": true,
   "dependencies": {
@@ -19,7 +20,7 @@
     "vite": "^5.0.8"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview"
   }
