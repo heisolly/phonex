@@ -74,20 +74,20 @@ function Contacts({ contacts, updateContact, deleteContact }) {
     <div className="p-6">
       {/* Search Bar */}
       <div className="relative mb-6">
-        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" size={20} />
+        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-amber-600" size={20} />
         <input
           type="text"
           placeholder="Search by name, phone, level, or department..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-12 pr-4 py-4 glass-effect border border-white/10 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary bg-transparent text-white placeholder-gray-600"
+          className="w-full pl-12 pr-4 py-4 bg-amber-100 border-2 border-amber-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-amber-600 text-amber-950 placeholder-amber-500 shadow-md"
         />
       </div>
 
       {/* Stats */}
-      <div className="mb-6 glass-effect rounded-2xl p-4 border border-primary/20">
-        <p className="text-center text-gray-400">
-          Total Contacts: <span className="text-primary font-bold text-xl">{contacts.length}</span>
+      <div className="mb-6 bg-gradient-to-br from-amber-200 to-orange-200 rounded-2xl p-4 border-2 border-amber-400 shadow-md">
+        <p className="text-center text-amber-800">
+          Total Contacts: <span className="text-amber-950 font-bold text-xl">{contacts.length}</span>
         </p>
       </div>
 
@@ -95,39 +95,39 @@ function Contacts({ contacts, updateContact, deleteContact }) {
       <div className="space-y-3">
         {filteredContacts.length === 0 ? (
           <div className="text-center py-16">
-            <p className="text-gray-500 text-lg">No contacts found</p>
-            <p className="text-gray-600 text-sm mt-2">Add contacts from the Add Contact tab</p>
+            <p className="text-amber-700 text-lg font-semibold">No contacts found</p>
+            <p className="text-amber-600 text-sm mt-2">Add contacts from the Add Contact tab</p>
           </div>
         ) : (
           filteredContacts.map(contact => (
             <div
               key={contact.id}
-              className="glass-effect border border-white/10 rounded-2xl p-4 hover:border-primary/30 transition-all"
+              className="bg-gradient-to-br from-amber-100 to-orange-100 border-2 border-amber-300 rounded-2xl p-4 hover:border-amber-500 hover:shadow-lg transition-all"
             >
               <div className="flex items-start gap-3">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-neon-green to-neon-blue text-dark-900 flex items-center justify-center font-bold text-lg flex-shrink-0">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-600 to-amber-700 text-white flex items-center justify-center font-bold text-lg flex-shrink-0 shadow-md">
                   {contact.avatar}
                 </div>
                 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-bold text-lg truncate text-white">{contact.name}</h3>
+                    <h3 className="font-bold text-lg truncate text-amber-950">{contact.name}</h3>
                     {contact.hasWhatsApp && (
-                      <WhatsAppIcon size={16} className="text-whatsapp flex-shrink-0" />
+                      <WhatsAppIcon size={16} className="text-green-600 flex-shrink-0" />
                     )}
                   </div>
                   
-                  <p className="text-primary text-sm font-mono mb-2">{contact.phone}</p>
+                  <p className="text-amber-800 text-sm font-mono mb-2 font-semibold">{contact.phone}</p>
                   
                   <div className="flex flex-wrap gap-2 mb-3">
                     {contact.level && (
-                      <span className="flex items-center gap-1 text-xs bg-neon-blue/20 text-neon-blue px-2 py-1 rounded-lg">
+                      <span className="flex items-center gap-1 text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded-lg font-semibold">
                         <GraduationCap size={12} />
                         {contact.level}
                       </span>
                     )}
                     {contact.department && (
-                      <span className="flex items-center gap-1 text-xs bg-neon-purple/20 text-neon-purple px-2 py-1 rounded-lg">
+                      <span className="flex items-center gap-1 text-xs bg-purple-200 text-purple-800 px-2 py-1 rounded-lg font-semibold">
                         <BookOpen size={12} />
                         {contact.department}
                       </span>
@@ -135,7 +135,7 @@ function Contacts({ contacts, updateContact, deleteContact }) {
                   </div>
                   
                   {contact.email && (
-                    <div className="flex items-center gap-2 text-gray-400 text-xs mb-3">
+                    <div className="flex items-center gap-2 text-amber-700 text-xs mb-3">
                       <Mail size={12} />
                       <span className="truncate">{contact.email}</span>
                     </div>
@@ -143,19 +143,20 @@ function Contacts({ contacts, updateContact, deleteContact }) {
 
                   {/* Action Buttons */}
                   <div className="flex gap-2">
-                    {contact.hasWhatsApp && (
-                      <button
-                        onClick={() => handleWhatsApp(contact.phone)}
-                        className="flex-1 py-2 bg-whatsapp/20 text-whatsapp rounded-xl text-sm font-semibold hover:bg-whatsapp/30 transition-all flex items-center justify-center gap-2 border border-whatsapp/30"
-                      >
-                        <WhatsAppIcon size={16} />
-                        Chat
-                      </button>
-                    )}
+                    {/* WhatsApp button - always show */}
+                    <button
+                      onClick={() => handleWhatsApp(contact.phone)}
+                      className="flex-1 py-2 bg-green-200 text-green-800 rounded-xl text-sm font-semibold hover:bg-green-300 transition-all flex items-center justify-center gap-2 border-2 border-green-400"
+                      title="Open in WhatsApp"
+                    >
+                      <WhatsAppIcon size={16} />
+                      WhatsApp
+                    </button>
                     
                     <button
                       onClick={() => handleEdit(contact)}
-                      className="px-4 py-2 glass-effect text-neon-blue rounded-xl hover:bg-white/10 transition-all border border-white/10"
+                      className="px-4 py-2 bg-blue-200 text-blue-800 rounded-xl hover:bg-blue-300 transition-all border-2 border-blue-400"
+                      title="Edit contact"
                     >
                       <Edit size={16} />
                     </button>
@@ -166,7 +167,8 @@ function Contacts({ contacts, updateContact, deleteContact }) {
                           deleteContact(contact.id)
                         }
                       }}
-                      className="px-4 py-2 glass-effect text-red-400 rounded-xl hover:bg-red-500/20 transition-all border border-white/10"
+                      className="px-4 py-2 bg-red-200 text-red-800 rounded-xl hover:bg-red-300 transition-all border-2 border-red-400"
+                      title="Delete contact"
                     >
                       <Trash2 size={16} />
                     </button>
@@ -180,15 +182,15 @@ function Contacts({ contacts, updateContact, deleteContact }) {
 
       {/* Edit Contact Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="glass-effect rounded-3xl p-6 w-full max-w-md border-2 border-primary/30">
+        <div className="fixed inset-0 bg-amber-950/80 backdrop-blur-md flex items-center justify-center z-50 p-4">
+          <div className="bg-gradient-to-br from-amber-100 to-orange-100 rounded-3xl p-6 w-full max-w-md border-2 border-amber-400 shadow-2xl">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-primary">
+              <h2 className="text-2xl font-bold text-amber-950">
                 Edit Contact
               </h2>
               <button
                 onClick={resetForm}
-                className="text-gray-400 hover:text-gray-300"
+                className="text-amber-700 hover:text-amber-900"
               >
                 <X size={24} />
               </button>
@@ -196,7 +198,7 @@ function Contacts({ contacts, updateContact, deleteContact }) {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-gray-400 mb-2">
+                <label className="block text-sm font-semibold text-amber-800 mb-2">
                   Full Name *
                 </label>
                 <input
@@ -204,13 +206,13 @@ function Contacts({ contacts, updateContact, deleteContact }) {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 glass-effect border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary bg-transparent text-white placeholder-gray-600"
+                  className="w-full px-4 py-3 bg-amber-50 border-2 border-amber-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-amber-600 text-amber-950 placeholder-amber-400"
                   placeholder="John Doe"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-400 mb-2">
+                <label className="block text-sm font-semibold text-amber-800 mb-2">
                   Phone Number *
                 </label>
                 <input
@@ -218,13 +220,13 @@ function Contacts({ contacts, updateContact, deleteContact }) {
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-3 glass-effect border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary bg-transparent text-white placeholder-gray-600"
+                  className="w-full px-4 py-3 bg-amber-50 border-2 border-amber-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-amber-600 text-amber-950 placeholder-amber-400"
                   placeholder="+1234567890"
                 />
               </div>
 
               <div>
-                <label className="flex items-center gap-2 text-sm font-semibold text-gray-400 mb-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-amber-800 mb-2">
                   <GraduationCap size={16} />
                   Level *
                 </label>
@@ -232,17 +234,17 @@ function Contacts({ contacts, updateContact, deleteContact }) {
                   required
                   value={formData.level}
                   onChange={(e) => setFormData({ ...formData, level: e.target.value })}
-                  className="w-full px-4 py-3 glass-effect border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary bg-transparent text-white"
+                  className="w-full px-4 py-3 bg-amber-50 border-2 border-amber-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-amber-600 text-amber-950"
                 >
-                  <option value="" className="bg-dark-800">Select Level</option>
+                  <option value="" className="bg-amber-50">Select Level</option>
                   {levels.map(level => (
-                    <option key={level} value={level} className="bg-dark-800">{level}</option>
+                    <option key={level} value={level} className="bg-amber-50">{level}</option>
                   ))}
                 </select>
               </div>
 
               <div>
-                <label className="flex items-center gap-2 text-sm font-semibold text-gray-400 mb-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-amber-800 mb-2">
                   <BookOpen size={16} />
                   Department *
                 </label>
@@ -252,7 +254,7 @@ function Contacts({ contacts, updateContact, deleteContact }) {
                   list="departments-edit"
                   value={formData.department}
                   onChange={(e) => setFormData({ ...formData, department: e.target.value.toUpperCase() })}
-                  className="w-full px-4 py-3 glass-effect border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary bg-transparent text-white placeholder-gray-600"
+                  className="w-full px-4 py-3 bg-amber-50 border-2 border-amber-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-amber-600 text-amber-950 placeholder-amber-400"
                   placeholder="Type or select department..."
                 />
                 <datalist id="departments-edit">
@@ -283,28 +285,28 @@ function Contacts({ contacts, updateContact, deleteContact }) {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-400 mb-2">
+                <label className="block text-sm font-semibold text-amber-800 mb-2">
                   Email (Optional)
                 </label>
                 <input
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 glass-effect border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary bg-transparent text-white placeholder-gray-600"
+                  className="w-full px-4 py-3 bg-amber-50 border-2 border-amber-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-amber-600 text-amber-950 placeholder-amber-400"
                   placeholder="student@university.edu"
                 />
               </div>
 
-              <div className="flex items-center gap-3 glass-effect p-4 rounded-xl">
+              <div className="flex items-center gap-3 bg-amber-200 p-4 rounded-xl border-2 border-amber-400">
                 <input
                   type="checkbox"
                   id="hasWhatsApp"
                   checked={formData.hasWhatsApp}
                   onChange={(e) => setFormData({ ...formData, hasWhatsApp: e.target.checked })}
-                  className="w-5 h-5 accent-whatsapp"
+                  className="w-5 h-5 accent-green-600"
                 />
-                <label htmlFor="hasWhatsApp" className="text-sm font-medium text-gray-300 flex items-center gap-2">
-                  <WhatsAppIcon size={18} className="text-whatsapp" />
+                <label htmlFor="hasWhatsApp" className="text-sm font-medium text-amber-900 flex items-center gap-2">
+                  <WhatsAppIcon size={18} className="text-green-600" />
                   Has WhatsApp
                 </label>
               </div>
@@ -313,13 +315,13 @@ function Contacts({ contacts, updateContact, deleteContact }) {
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="flex-1 py-3 glass-effect border border-white/20 rounded-xl font-semibold hover:bg-white/10 transition-all text-gray-300"
+                  className="flex-1 py-3 bg-amber-200 border-2 border-amber-400 rounded-xl font-semibold hover:bg-amber-300 transition-all text-amber-900"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-3 bg-gradient-to-r from-neon-green to-neon-blue text-dark-900 rounded-xl font-bold hover:shadow-lg hover:scale-105 transition-all neon-glow"
+                  className="flex-1 py-3 bg-gradient-to-r from-amber-600 to-amber-700 text-white rounded-xl font-bold hover:shadow-xl hover:scale-105 transition-all"
                 >
                   Update
                 </button>
