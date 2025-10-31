@@ -51,11 +51,11 @@ function App() {
   ]
 
   return (
-    <div className="w-full h-screen max-w-md mx-auto bg-dark-800 overflow-hidden flex flex-col">
+    <div className="w-full h-screen max-w-md mx-auto bg-black overflow-hidden flex flex-col relative">
       {/* Header */}
-      <div className="bg-gradient-to-r from-neon-green via-neon-blue to-neon-purple p-6">
-        <h1 className="text-3xl font-bold text-center text-dark-900">PHONEX</h1>
-        <p className="text-center text-sm text-dark-800 mt-1 font-medium">Student Contact Collector</p>
+      <div className="bg-gradient-to-r from-emerald-500 via-cyan-500 to-purple-500 p-6 relative z-10">
+        <h1 className="text-3xl font-bold text-center text-black">PHONEX</h1>
+        <p className="text-center text-sm text-black/80 mt-1 font-medium">Student Contact Collector</p>
       </div>
 
       {/* Content */}
@@ -75,9 +75,9 @@ function App() {
         )}
       </div>
 
-      {/* Single Bottom Navigation Bar */}
-      <div className="glass-effect border-t border-white/10">
-        <div className="grid grid-cols-3 max-w-md mx-auto">
+      {/* Futuristic Bottom Navigation - 3 Tabs */}
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 animate-fadeIn">
+        <div className="flex items-center gap-2 px-6 py-4 rounded-full bg-zinc-900/90 backdrop-blur-xl border border-white/10 shadow-2xl">
           {tabs.map(tab => {
             const Icon = tab.icon
             const isActive = activeTab === tab.id
@@ -85,14 +85,21 @@ function App() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex flex-col items-center justify-center gap-1 py-3 transition-all ${
+                className={`relative p-4 rounded-full transition-all active:scale-95 ${
                   isActive
-                    ? 'text-primary bg-primary/10'
-                    : 'text-gray-400 hover:text-gray-300 hover:bg-white/5'
+                    ? 'bg-gradient-to-br from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/30'
+                    : 'hover:bg-white/5'
                 }`}
               >
-                <Icon size={20} className={isActive ? 'neon-glow' : ''} />
-                <span className="text-xs font-semibold">{tab.label}</span>
+                <Icon 
+                  size={22} 
+                  className={`transition-colors ${
+                    isActive ? 'text-white' : 'text-gray-400 hover:text-cyan-400'
+                  }`} 
+                />
+                {isActive && (
+                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-cyan-400"></div>
+                )}
               </button>
             )
           })}

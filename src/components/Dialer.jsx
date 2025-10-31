@@ -172,28 +172,28 @@ function Dialer({ contacts, addContact }) {
 
   return (
     <>
-      <div className="min-h-screen bg-black p-4 md:p-6 relative overflow-hidden">
+      <div className="min-h-screen bg-black px-4 pt-4 pb-24 relative overflow-hidden">
         {/* Animated Background Grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0a0a0a_1px,transparent_1px),linear-gradient(to_bottom,#0a0a0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0a0a0a_1px,transparent_1px),linear-gradient(to_bottom,#0a0a0a_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
         
         {/* Glow Effects */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-cyan-500/20 rounded-full blur-[120px] pointer-events-none"></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-72 h-72 bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-[80px] pointer-events-none"></div>
 
-        <div className="max-w-md mx-auto relative z-10">
-          {/* Futuristic Display */}
-          <div className="mb-6 animate-slideUp">
+        <div className="max-w-sm mx-auto relative z-10">
+          {/* Mobile Optimized Display */}
+          <div className="mb-5 animate-slideUp">
             <div className="relative group">
               {/* Glow border effect */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-3xl opacity-20 group-hover:opacity-30 blur transition duration-300"></div>
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl opacity-20 group-hover:opacity-30 blur transition duration-300"></div>
               
-              <div className="relative bg-gradient-to-br from-zinc-900 to-black rounded-3xl p-6 border border-cyan-500/20 backdrop-blur-xl">
-                <div className="flex items-center justify-between mb-4">
-                  <label className="text-xs font-bold text-cyan-400 uppercase tracking-widest flex items-center gap-2">
+              <div className="relative bg-gradient-to-br from-zinc-900 to-black rounded-2xl p-5 border border-cyan-500/20 backdrop-blur-xl">
+                <div className="flex items-center justify-between mb-3">
+                  <label className="text-[10px] font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
                     <div className="w-1 h-1 rounded-full bg-cyan-400 animate-pulse"></div>
                     INPUT STREAM
                   </label>
-                  <div className="text-xs text-gray-600 font-mono">ID: #{Math.floor(Math.random() * 9999)}</div>
+                  <div className="text-[9px] text-gray-600 font-mono">ID: #{Math.floor(Math.random() * 9999)}</div>
                 </div>
                 
                 <input
@@ -201,22 +201,22 @@ function Dialer({ contacts, addContact }) {
                   value={number}
                   readOnly
                   placeholder="_ _ _ _ _ _ _ _ _ _"
-                  className="w-full text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-cyan-400 bg-transparent border-none focus:outline-none placeholder-gray-800 mb-4 tracking-wider font-mono"
+                  className="w-full text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-cyan-400 bg-transparent border-none focus:outline-none placeholder-gray-800 mb-3 tracking-wider font-mono"
                 />
                 
                 {number ? (
-                  <div className="flex items-center justify-between pt-4 border-t border-cyan-500/10">
-                    <div className="flex items-center gap-2 text-xs text-cyan-400 font-mono">
-                      <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></div>
-                      <span>ACTIVE • {number.length} CHARS</span>
+                  <div className="flex items-center justify-between pt-3 border-t border-cyan-500/10">
+                    <div className="flex items-center gap-1.5 text-[10px] text-cyan-400 font-mono">
+                      <div className="w-1 h-1 rounded-full bg-cyan-400 animate-pulse"></div>
+                      <span>ACTIVE • {number.length}</span>
                     </div>
-                    <div className="text-xs text-gray-600 font-mono px-2 py-1 bg-cyan-500/5 rounded border border-cyan-500/20">
+                    <div className="text-[10px] text-gray-600 font-mono px-2 py-1 bg-cyan-500/5 rounded border border-cyan-500/20">
                       {number.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')}
                     </div>
                   </div>
                 ) : (
-                  <div className="pt-4 border-t border-white/5">
-                    <p className="text-xs text-gray-700 font-mono flex items-center gap-2">
+                  <div className="pt-3 border-t border-white/5">
+                    <p className="text-[10px] text-gray-700 font-mono flex items-center gap-1.5">
                       <span className="w-1 h-1 rounded-full bg-gray-700"></span>
                       AWAITING INPUT...
                     </p>
@@ -226,15 +226,15 @@ function Dialer({ contacts, addContact }) {
             </div>
           </div>
 
-          {/* Cyberpunk Dial Pad */}
-          <div className="grid grid-cols-3 gap-3 mb-6">
+          {/* Mobile Optimized Dial Pad */}
+          <div className="grid grid-cols-3 gap-2.5 mb-4">
             {dialPad.map((row, rowIndex) => (
               <React.Fragment key={rowIndex}>
                 {row.map(digit => (
                   <button
                     key={digit}
                     onClick={() => handleNumberClick(digit)}
-                    className="relative group aspect-square rounded-xl bg-gradient-to-br from-zinc-900 to-black hover:from-zinc-800 hover:to-zinc-900 border border-white/10 hover:border-cyan-500/50 transition-all duration-200 flex items-center justify-center text-2xl font-bold text-white active:scale-95 overflow-hidden"
+                    className="relative group aspect-square rounded-xl bg-gradient-to-br from-zinc-900 to-black hover:from-zinc-800 hover:to-zinc-900 border border-white/10 hover:border-cyan-500/50 transition-all duration-200 flex items-center justify-center text-2xl font-bold text-white active:scale-95 overflow-hidden touch-manipulation"
                   >
                     {/* Hover glow */}
                     <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-blue-500/0 group-hover:from-cyan-500/10 group-hover:to-blue-500/10 transition-all duration-300"></div>
@@ -245,105 +245,58 @@ function Dialer({ contacts, addContact }) {
             ))}
           </div>
 
-          {/* Tech Action Buttons */}
-          <div className="grid grid-cols-3 gap-3 mb-6">
+          {/* Mobile Optimized Action Buttons */}
+          <div className="grid grid-cols-3 gap-2.5 mb-4">
             <button
               onClick={handleDelete}
               disabled={!number}
-              className="relative group py-4 rounded-xl bg-gradient-to-br from-red-950 to-black border border-red-500/30 hover:border-red-500/50 disabled:opacity-30 disabled:cursor-not-allowed transition-all flex flex-col items-center justify-center gap-2 text-red-400 hover:text-red-300 active:scale-95 disabled:hover:scale-100 overflow-hidden"
+              className="relative group py-3.5 rounded-xl bg-gradient-to-br from-red-950 to-black border border-red-500/30 hover:border-red-500/50 disabled:opacity-30 disabled:cursor-not-allowed transition-all flex flex-col items-center justify-center gap-1.5 text-red-400 hover:text-red-300 active:scale-95 disabled:hover:scale-100 overflow-hidden touch-manipulation"
             >
               <div className="absolute inset-0 bg-red-500/0 group-hover:bg-red-500/10 transition-all"></div>
-              <Delete size={20} className="relative z-10" />
-              <span className="text-xs font-bold uppercase tracking-wide relative z-10">Clear</span>
+              <Delete size={18} className="relative z-10" />
+              <span className="text-[10px] font-bold uppercase tracking-wide relative z-10">Clear</span>
             </button>
             
             <button
               onClick={handleSaveClick}
               disabled={!number}
-              className="relative group py-4 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 disabled:opacity-30 disabled:cursor-not-allowed transition-all flex flex-col items-center justify-center gap-2 text-white font-bold active:scale-95 disabled:hover:scale-100 shadow-lg shadow-cyan-500/20 overflow-hidden"
+              className="relative group py-3.5 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 disabled:opacity-30 disabled:cursor-not-allowed transition-all flex flex-col items-center justify-center gap-1.5 text-white font-bold active:scale-95 disabled:hover:scale-100 shadow-lg shadow-cyan-500/20 overflow-hidden touch-manipulation"
             >
               <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all"></div>
-              <Save size={22} className="relative z-10" />
-              <span className="text-xs font-bold uppercase tracking-wide relative z-10">Save</span>
+              <Save size={20} className="relative z-10" />
+              <span className="text-[10px] font-bold uppercase tracking-wide relative z-10">Save</span>
             </button>
 
             <button
               onClick={handleWhatsApp}
               disabled={!number}
-              className="relative group py-4 rounded-xl bg-gradient-to-br from-green-950 to-black border border-green-500/30 hover:border-green-500/50 disabled:opacity-30 disabled:cursor-not-allowed transition-all flex flex-col items-center justify-center gap-2 text-green-400 hover:text-green-300 active:scale-95 disabled:hover:scale-100 overflow-hidden"
+              className="relative group py-3.5 rounded-xl bg-gradient-to-br from-green-950 to-black border border-green-500/30 hover:border-green-500/50 disabled:opacity-30 disabled:cursor-not-allowed transition-all flex flex-col items-center justify-center gap-1.5 text-green-400 hover:text-green-300 active:scale-95 disabled:hover:scale-100 overflow-hidden touch-manipulation"
             >
               <div className="absolute inset-0 bg-green-500/0 group-hover:bg-green-500/10 transition-all"></div>
-              <WhatsAppIcon size={20} className="relative z-10" />
-              <span className="text-xs font-bold uppercase tracking-wide relative z-10">Chat</span>
+              <WhatsAppIcon size={18} className="relative z-10" />
+              <span className="text-[10px] font-bold uppercase tracking-wide relative z-10">Chat</span>
             </button>
           </div>
 
-          {/* Tech Info Panel */}
+          {/* Mobile Optimized Info Panel */}
           <div className="relative group">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-2xl opacity-0 group-hover:opacity-100 blur transition duration-300"></div>
-            <div className="relative bg-gradient-to-br from-zinc-900 to-black rounded-2xl p-5 border border-cyan-500/20 backdrop-blur-xl">
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-xl opacity-0 group-hover:opacity-100 blur transition duration-300"></div>
+            <div className="relative bg-gradient-to-br from-zinc-900 to-black rounded-xl p-4 border border-cyan-500/20 backdrop-blur-xl">
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 flex items-center justify-center flex-shrink-0">
-                  <Sparkles size={18} className="text-cyan-400" />
+                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 flex items-center justify-center flex-shrink-0">
+                  <Sparkles size={16} className="text-cyan-400" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-sm font-bold text-white mb-1 flex items-center gap-2">
+                  <h3 className="text-xs font-bold text-white mb-1 flex items-center gap-2">
                     ADVANCED PROFILES
-                    <span className="text-[10px] px-1.5 py-0.5 bg-cyan-500/20 text-cyan-400 rounded border border-cyan-500/30">NEW</span>
+                    <span className="text-[9px] px-1.5 py-0.5 bg-cyan-500/20 text-cyan-400 rounded border border-cyan-500/30">NEW</span>
                   </h3>
-                  <p className="text-xs text-gray-500 leading-relaxed font-mono">
+                  <p className="text-[10px] text-gray-500 leading-relaxed font-mono">
                     Store comprehensive data: academic level, department, social networks.
                   </p>
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Status Bar */}
-          <div className="mt-6 mb-24 flex items-center justify-center gap-4 text-xs text-gray-700 font-mono">
-            <span className="flex items-center gap-1">
-              <div className="w-1 h-1 rounded-full bg-green-500"></div>
-              SECURE
-            </span>
-            <span>•</span>
-            <span className="flex items-center gap-1">
-              <div className="w-1 h-1 rounded-full bg-cyan-500"></div>
-              ENCRYPTED
-            </span>
-            <span>•</span>
-            <span className="flex items-center gap-1">
-              <div className="w-1 h-1 rounded-full bg-blue-500"></div>
-              ONLINE
-            </span>
-          </div>
-        </div>
-
-        {/* Rounded Centered Bottom Navigation */}
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 animate-fadeIn">
-          <div className="flex items-center gap-2 px-6 py-4 rounded-full bg-zinc-900/90 backdrop-blur-xl border border-white/10 shadow-2xl">
-            <button className="relative group p-3 rounded-full hover:bg-white/5 transition-all active:scale-95">
-              <Phone size={20} className="text-gray-400 group-hover:text-cyan-400 transition-colors" />
-              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </button>
-            
-            <button className="relative group p-3 rounded-full hover:bg-white/5 transition-all active:scale-95">
-              <UsersIcon size={20} className="text-gray-400 group-hover:text-cyan-400 transition-colors" />
-              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </button>
-
-            <button className="relative p-4 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 transition-all active:scale-95">
-              <Grid3x3 size={22} className="text-white" />
-            </button>
-
-            <button className="relative group p-3 rounded-full hover:bg-white/5 transition-all active:scale-95">
-              <UserCircle size={20} className="text-gray-400 group-hover:text-cyan-400 transition-colors" />
-              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </button>
-
-            <button className="relative group p-3 rounded-full hover:bg-white/5 transition-all active:scale-95">
-              <Settings size={20} className="text-gray-400 group-hover:text-cyan-400 transition-colors" />
-              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </button>
           </div>
         </div>
       </div>
